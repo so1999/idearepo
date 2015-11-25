@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入-->
+    <context:component-scan base-package="cn.easyui.dao"/>
+    <!--扫描service类包，应用Spring的注解配置 -->
+    <context:component-scan base-package="cn.easyui.service"/>
+
+    <!--通过AOP配置事务增强，让service包下所有Bean的所有方法拥有事务-->
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="serviceMethod" expression="execution(* cn.easyui.service..*(..))"/>
+        <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
+    </aop:config>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSource"/>
+
+    <!-- 加载配置文件 -->
+    <context:property-placeholder location="classpath:db.properties" />
+
+    <!--定义一个使用DBCP实现的数据源-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close"
+          p:driverClassName="${jdbc.driver}"
+          p:url="${jdbc.url}"
+          p:username="${jdbc.username}"
+          p:password="${jdbc.password}"/>
+
+    <!--定义JDBC模版Bean-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" p:dataSource-ref="dataSource"/>
+
+    <!--配置视图解析器，将ModelAndView及字符串解析为具体的页面-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:viewClass="org.springframework.web.servlet.view.JstlView"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+
+    <!-- 配置Mybatis的文件-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:SqlMapConfig.xml" />
+    </bean>
+    <!-- 自动扫描了所有的XxxxMapper.xml对应的mapper接口文件，这样就不用一个一个手动配置Mpper的映射了，只要Mapper接口类和Mapper映射文件对应起来就可以了。 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage"
+                  value="cn.easyui.mapper" />
+    </bean>
+
+</beans>
