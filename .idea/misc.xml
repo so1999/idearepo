@@ -12,6 +12,7 @@
       <list>
         <option value="$PROJECT_DIR$/mavensimple/pom.xml" />
         <option value="$PROJECT_DIR$/easyui/pom.xml" />
+        <option value="$PROJECT_DIR$/jbs/pom.xml" />
       </list>
     </option>
   </component>

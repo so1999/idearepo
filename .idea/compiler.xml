@@ -24,6 +24,7 @@
         <processorPath useClasspath="true" />
         <module name="easyui" />
         <module name="hop" />
+        <module name="jbs" />
         <module name="mavensimple" />
         <module name="mavenweb" />
       </profile>
@@ -31,6 +32,7 @@
     <bytecodeTargetLevel>
       <module name="easyui" target="1.5" />
       <module name="hop" target="1.5" />
+      <module name="jbs" target="1.5" />
       <module name="mavensimple" target="1.5" />
       <module name="mavenspring" target="1.5" />
       <module name="mavenweb" target="1.5" />
