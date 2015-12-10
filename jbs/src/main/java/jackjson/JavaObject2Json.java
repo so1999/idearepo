@@ -57,4 +57,5 @@ public class JavaObject2Json {
         staff.setSkills(skills);
         return staff;
     }
+
 }

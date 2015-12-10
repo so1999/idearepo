@@ -8,10 +8,8 @@ import java.util.Date;
  * Created by Sun on 2015/11/4.
  */
 public class DateUtil {
-    /*
-    * 日期格式化
-    *
-    * */
+
+
     public static String format(String pattern, String datestr)
             throws ParseException {
         SimpleDateFormat simpleDateFormat = null;
