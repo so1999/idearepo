@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ShiroLearn/ShiroLearn.iml" filepath="$PROJECT_DIR$/ShiroLearn/ShiroLearn.iml" />
       <module fileurl="file://$PROJECT_DIR$/easyui/easyui.iml" filepath="$PROJECT_DIR$/easyui/easyui.iml" />
       <module fileurl="file://$PROJECT_DIR$/jbs/jbs.iml" filepath="$PROJECT_DIR$/jbs/jbs.iml" />
       <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />

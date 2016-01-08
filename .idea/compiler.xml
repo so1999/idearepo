@@ -22,11 +22,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="easyui" />
         <module name="hop" />
         <module name="jbs" />
         <module name="mavensimple" />
         <module name="mavenweb" />
+      </profile>
+      <profile default="false" name="Annotation profile for ShiroLearn" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="ShiroLearn" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -36,6 +42,7 @@
       <module name="mavensimple" target="1.5" />
       <module name="mavenspring" target="1.5" />
       <module name="mavenweb" target="1.5" />
+      <module name="ShiroLearn" target="1.6" />
       <module name="vvv" target="1.5" />
     </bytecodeTargetLevel>
   </component>

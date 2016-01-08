@@ -38,7 +38,7 @@ public class JdbcPreparedStatement {
      *
      * @param sql SQL语句
      * @param list 参数列表
-     * @param flag 查询标志，“0”增删改，“1”查询
+     * @param flag 查询标志，“1”增删改，“2”查询
      * @throws SQLException
      */
     private static void operateTable(String sql, List list, String flag) throws SQLException {
